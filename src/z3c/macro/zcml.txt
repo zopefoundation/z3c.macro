@@ -1,0 +1,73 @@
+===============
+Macro directive
+===============
+
+A macro directive can be used for register macros. Take a look at the 
+README.txt which explains the macro TALES expression.
+
+  >>> import sys
+  >>> from zope.configuration import xmlconfig
+  >>> import z3c.template
+  >>> context = xmlconfig.file('meta.zcml', z3c.macro)
+
+First define a template which defines a macro:
+
+  >>> import os, tempfile
+  >>> temp_dir = tempfile.mkdtemp()
+  >>> file = os.path.join(temp_dir, 'file.pt')
+  >>> open(file, 'w').write('''
+  ... <html>
+  ...   <head>
+  ...   <tal:block replace="structure provider:ITitle">
+  ...     <metal:block define-macro="title">
+  ...   		<title>Pagelet skin</title>
+  ...     </metal:block>
+  ...   </tal:block>
+  ...   </head>
+  ...   <body>
+  ...     <div>content</div>
+  ...   </body>
+  ... </html>
+  ... ''')
+
+and register the macro provider within the ``z3c:macroProvider`` directive:
+
+  >>> context = xmlconfig.string("""
+  ... <configure
+  ...     xmlns:z3c="http://namespaces.zope.org/z3c">
+  ...   <z3c:macro
+  ...       template="%s"
+  ...       name="title"
+  ...       />
+  ... </configure>
+  ... """ % file, context=context)
+
+We need a content object...
+
+  >>> import zope.interface
+  >>> class Content(object):
+  ...     zope.interface.implements(zope.interface.Interface)
+  >>> content = Content()
+
+and we need a view...
+
+  >>> import zope.interface
+  >>> import zope.component
+  >>> from zope.publisher.browser import BrowserPage
+  >>> class View(BrowserPage):
+  ...     def __init__(self, context, request):
+  ...         self.context = context
+  ...         self.request = request
+
+and we need a request:
+  >>> from zope.publisher.browser import TestRequest
+  >>> request = TestRequest()
+
+Check if we get the macro template:
+
+  >>> from z3c.macro import interfaces
+  >>> view = View(content, request)
+  >>> zope.component.getMultiAdapter((content, view, request), 
+  ...     interface=interfaces.IMacroTemplate, name='title')
+  [('version', '1.6'), ('mode', 'html'), ('setPosition', (5, 4)),...
+  [(u'define-macro', u'title', 'metal')]))]...

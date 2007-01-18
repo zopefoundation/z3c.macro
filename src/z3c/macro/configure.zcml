@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:tales="http://namespaces.zope.org/tales"
+    i18n_domain="z3c">
+
+  <interface interface=".interfaces.IMacroExpression" />
+
+  <tales:expressiontype
+      name="macro"
+      handler=".tales.MacroExpression"
+      />
+
+</configure>
