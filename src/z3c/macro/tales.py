@@ -16,10 +16,9 @@
 $Id$
 """
 __docformat__ = 'restructuredtext'
-
+import zope.component
 import zope.interface
 from zope.tales import expressions
-from zope.app.zapi import getMultiAdapter
 
 from z3c.macro import interfaces
 
@@ -35,5 +34,5 @@ class MacroExpression(expressions.StringExpr):
         request = econtext.vars['request']
         view = econtext.vars['view']
 
-        return getMultiAdapter((context, view, request), 
+        return zope.component.getMultiAdapter((context, view, request),
             interface=interfaces.IMacroTemplate, name=name)
