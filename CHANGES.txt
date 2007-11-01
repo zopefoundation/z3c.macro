@@ -1,0 +1,16 @@
+=======
+CHANGES
+=======
+
+1.1.0 (2007-11-01)
+------------------
+
+- Update package info data.
+
+- Add z3c namespace package declaration.
+
+
+1.0.0 (2007-09-30)
+------------------
+
+- Initial release.

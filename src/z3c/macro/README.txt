@@ -3,7 +3,7 @@ Macro
 =====
 
 This package provides a adapter and a TALES expression for a expliciter and
-flexibler macro handling using the adapter registry for macros. 
+flexibler macro handling using the adapter registry for macros.
 
 We start with creating a content object that is used as a view context later:
 
@@ -16,7 +16,7 @@ We start with creating a content object that is used as a view context later:
 
   >>> content = Content()
 
-We also create a temp dir for sample templates which we define later for 
+We also create a temp dir for sample templates which we define later for
 testing:
 
   >>> import os, tempfile
@@ -55,7 +55,7 @@ The TALES ``macro`` Expression
 ------------------------------
 
 The ``macro`` expression will look up the name of the macro, call a adapter
-providing IMacroTemplate and uses them or fills a slot if defined in the 
+providing IMacroTemplate and uses them or fills a slot if defined in the
 ``macro`` expression.
 
 Let's create a page template using the ``navigation`` macros:
@@ -78,7 +78,7 @@ Let's create a page template using the ``navigation`` macros:
   ... ''')
 
 As you can see, we used the ``macro`` expression to simply look up a macro
-called navigation whihc get inserted and replaces the HTML content at this 
+called navigation whihc get inserted and replaces the HTML content at this
 place.
 
 Let's now create a view using this page template:

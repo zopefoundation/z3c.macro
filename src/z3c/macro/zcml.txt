@@ -2,7 +2,7 @@
 Macro directive
 ===============
 
-A macro directive can be used for register macros. Take a look at the 
+A macro directive can be used for register macros. Take a look at the
 README.txt which explains the macro TALES expression.
 
   >>> import sys
@@ -67,7 +67,7 @@ Check if we get the macro template:
 
   >>> from z3c.macro import interfaces
   >>> view = View(content, request)
-  >>> zope.component.getMultiAdapter((content, view, request), 
+  >>> zope.component.getMultiAdapter((content, view, request),
   ...     interface=interfaces.IMacroTemplate, name='title')
   [('version', '1.6'), ('mode', 'html'), ('setPosition', (5, 4)),...
   [(u'define-macro', u'title', 'metal')]))]...
