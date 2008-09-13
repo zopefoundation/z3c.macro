@@ -1,5 +1,5 @@
 ===============
-Macro directive
+macro directive
 ===============
 
 A macro directive can be used for register macros. Take a look at the
@@ -67,7 +67,29 @@ Check if we get the macro template:
 
   >>> from z3c.macro import interfaces
   >>> view = View(content, request)
-  >>> zope.component.getMultiAdapter((content, view, request),
+
+  >>> macro = zope.component.queryMultiAdapter((content, view, request),
   ...     interface=interfaces.IMacroTemplate, name='title')
-  [('version', '1.6'), ('mode', 'html'), ('setPosition', (5, 4)),...
-  [(u'define-macro', u'title', 'metal')]))]...
+
+  >>> macro is not None
+  True
+
+  >>> import os, tempfile
+  >>> temp_dir = tempfile.mkdtemp()
+  >>> file = os.path.join(temp_dir, 'test.pt')
+  >>> open(file, 'w').write('''
+  ... <html>
+  ...   <body>
+  ...     <metal:macro use-macro="options/macro" />
+  ...   </body>
+  ... </html>
+  ... ''')
+
+  >>> from z3c.pt.compat import ViewPageTemplateFile, bind_template
+  >>> template = ViewPageTemplateFile(file)
+  >>> print bind_template(template, view)(macro=macro)
+  <html>
+    <body>
+      <title>Pagelet skin</title>
+    </body>
+  </html>

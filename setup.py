@@ -57,12 +57,13 @@ setup(
     namespace_packages = ['z3c'],
     extras_require = dict(
         test = ['z3c.template',
+                'z3c.pt',
+                'lxml>=2.1.1',
                 'zope.app.testing',
                 'zope.testing'],
         ),
     install_requires = [
         'setuptools',
-        'zope.app.pagetemplate',
         'zope.component',
         'zope.configuration',
         'zope.contentprovider',
@@ -71,6 +72,8 @@ setup(
         'zope.publisher',
         'zope.schema',
         'zope.tales',
+        'zope.app.pagetemplate',
+        'z3c.pt.compat',
         ],
     include_package_data = True,
     zip_safe = False,

@@ -16,12 +16,18 @@
 $Id$
 """
 __docformat__ = 'restructuredtext'
+
+import re
+
 import zope.component
 import zope.interface
 from zope.tales import expressions
 
 from z3c.macro import interfaces
 
+def get_macro_template(context, view, request, name):
+    return zope.component.getMultiAdapter(
+        (context, view, request), interface=interfaces.IMacroTemplate, name=name)
 
 class MacroExpression(expressions.StringExpr):
     """Collect named IMacroTemplate via a TAL namespace called ``macro``."""
@@ -33,6 +39,31 @@ class MacroExpression(expressions.StringExpr):
         context = econtext.vars['context']
         request = econtext.vars['request']
         view = econtext.vars['view']
+        return get_macro_template(context, view, request, name)
+    
+try:
+    from z3c.pt.interfaces import IExpressionTranslation
+    from z3c.pt import types
+        
+    class Z3CPTMacroExpression(object):
+        """Collect named IMacroTemplate via a TAL namespace called ``macro``."""
 
-        return zope.component.getMultiAdapter((context, view, request),
-            interface=interfaces.IMacroTemplate, name=name)
+        zope.interface.implements(IExpressionTranslation)
+
+        macro_regex = re.compile(r'^[A-Za-z][A-Za-z0-9_-]*$')
+        symbol = '_get_macro_template'
+        
+        def validate(self, string):
+            if self.macro_regex.match(string) is None:
+                raise SyntaxError("%s is not a valid macro name." % string)
+
+        def translate(self, string):
+            value = types.value("%s(context, view, request, '%s')" % \
+                                (self.symbol, string))
+            value.symbol_mapping[self.symbol] = get_macro_template
+            return value
+
+    z3cpt = Z3CPTMacroExpression()
+    
+except ImportError:
+    pass

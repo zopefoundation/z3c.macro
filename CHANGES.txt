@@ -2,6 +2,12 @@
 CHANGES
 =======
 
+after 1.1.0
+-----------
+
+- Allow use of ``z3c.pt`` using ``z3c.pt.compat`` compatibility later.
+
+
 1.1.0 (2007-11-01)
 ------------------
 

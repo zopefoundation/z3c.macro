@@ -37,7 +37,6 @@ We define a macro template as a adapter providing IMacroTemplate:
 
 Let's define the macro factory
 
-  >>> from zope.app.pagetemplate import viewpagetemplatefile
   >>> from z3c.macro import interfaces
   >>> from z3c.macro import zcml
   >>> navigationMacro = zcml.MacroFactory(path, 'navigation', 'text/html')
@@ -83,7 +82,20 @@ place.
 
 Let's now create a view using this page template:
 
-  >>> from zope.app.pagetemplate.simpleviewclass import SimpleViewClass
+  >>> from zope.publisher.browser import BrowserView
+  >>> class simple(BrowserView):
+  ...     def __getitem__(self, name):
+  ...         return self.index.macros[name]
+  ...
+  ...     def __call__(self, **kwargs):
+  ...         return self.index(**kwargs)
+
+  >>> from z3c.pt.compat import ViewPageTemplateFile  
+  >>> def SimpleViewClass(path, name=u''):
+  ...     return type(
+  ...         "SimpleViewClass", (simple,),
+  ...         {'index': ViewPageTemplateFile(path), '__name__': name})
+  
   >>> FirstPage = SimpleViewClass(path, name='first.html')
 
   >>> zope.component.provideAdapter(
