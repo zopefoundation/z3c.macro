@@ -18,11 +18,9 @@ First define a template which defines a macro:
   >>> open(file, 'w').write('''
   ... <html>
   ...   <head>
-  ...   <tal:block replace="structure provider:ITitle">
   ...     <metal:block define-macro="title">
-  ...   		<title>Pagelet skin</title>
+  ...        <title>Pagelet skin</title>
   ...     </metal:block>
-  ...   </tal:block>
   ...   </head>
   ...   <body>
   ...     <div>content</div>

@@ -66,7 +66,6 @@ setup(
         'setuptools',
         'zope.component',
         'zope.configuration',
-        'zope.contentprovider',
         'zope.interface',
         'zope.pagetemplate',
         'zope.publisher',

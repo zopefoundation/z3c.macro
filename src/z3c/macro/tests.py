@@ -40,11 +40,6 @@ def setUpZPT(test):
     from z3c.macro import tales
     metaconfigure.registerType('macro', tales.MacroExpression)
 
-    # register provider TALES
-    from zope.app.pagetemplate import metaconfigure
-    from zope.contentprovider import tales
-    metaconfigure.registerType('provider', tales.TALESProviderExpression)
-
 def setUpZ3CPT(suite):
     z3c.pt.compat.config.enable()
     setUp(suite)
