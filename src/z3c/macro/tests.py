@@ -47,7 +47,7 @@ def setUpZ3CPT(suite):
 
     from z3c.macro import tales
     component.provideUtility(
-        tales.z3cpt, name='macro')
+        tales.z3cpt_macro_expression, name='macro')
     
 def tearDown(test):
     setup.placefulTearDown()

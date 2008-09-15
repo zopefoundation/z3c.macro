@@ -63,7 +63,7 @@ try:
             value.symbol_mapping[self.symbol] = get_macro_template
             return value
 
-    z3cpt = Z3CPTMacroExpression()
+    z3cpt_macro_expression = Z3CPTMacroExpression()
     
 except ImportError:
     pass
