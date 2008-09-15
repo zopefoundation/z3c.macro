@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:tales="http://namespaces.zope.org/tales"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="z3c">
 
   <interface interface=".interfaces.IMacroExpression" />
