@@ -57,7 +57,7 @@ try:
             if self.macro_regex.match(string) is None:
                 raise SyntaxError("%s is not a valid macro name." % string)
 
-        def translate(self, string):
+        def translate(self, string, escape=None):
             value = types.value("%s(context, view, request, '%s')" % \
                                 (self.symbol, string))
             value.symbol_mapping[self.symbol] = get_macro_template
