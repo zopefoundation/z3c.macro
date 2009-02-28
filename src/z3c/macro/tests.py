@@ -26,14 +26,15 @@ from zope.testing.doctestunit import DocFileSuite
 from zope.app.testing import setup
 from zope.configuration import xmlconfig
 
-import z3c.pt.compat
+import z3c.pt
+import z3c.ptcompat
 
 def setUp(test):
     root = setup.placefulSetUp(site=True)
     test.globs['root'] = root
 
 def setUpZPT(test):
-    z3c.pt.compat.config.disable()
+    z3c.ptcompat.config.disable()
     setUp(test)
     
     from zope.app.pagetemplate import metaconfigure
@@ -41,7 +42,7 @@ def setUpZPT(test):
     metaconfigure.registerType('macro', tales.MacroExpression)
 
 def setUpZ3CPT(suite):
-    z3c.pt.compat.config.enable()
+    z3c.ptcompat.config.enable()
     setUp(suite)
     xmlconfig.XMLConfig('configure.zcml', z3c.pt)()
 

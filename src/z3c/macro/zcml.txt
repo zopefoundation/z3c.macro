@@ -83,7 +83,7 @@ Check if we get the macro template:
   ... </html>
   ... ''')
 
-  >>> from z3c.pt.compat import ViewPageTemplateFile, bind_template
+  >>> from z3c.ptcompat import ViewPageTemplateFile, bind_template
   >>> template = ViewPageTemplateFile(file)
   >>> print bind_template(template, view)(macro=macro)
   <html>

@@ -90,7 +90,7 @@ Let's now create a view using this page template:
   ...     def __call__(self, **kwargs):
   ...         return self.index(**kwargs)
 
-  >>> from z3c.pt.compat import ViewPageTemplateFile  
+  >>> from z3c.ptcompat import ViewPageTemplateFile  
   >>> def SimpleViewClass(path, name=u''):
   ...     return type(
   ...         "SimpleViewClass", (simple,),

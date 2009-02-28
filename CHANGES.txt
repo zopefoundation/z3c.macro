@@ -2,10 +2,12 @@
 CHANGES
 =======
 
-after 1.1.0
------------
+1.1.1 (unreleased)
+------------------
 
-- Allow use of ``z3c.pt`` using ``z3c.pt.compat`` compatibility later.
+- Allow use of ``z3c.pt`` using ``z3c.ptcompat`` compatibility later.
+
+- Change package's mailing list address to zope-dev at zope.org.
 
 
 1.1.0 (2007-11-01)

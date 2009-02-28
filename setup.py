@@ -25,7 +25,7 @@ setup(
     name='z3c.macro',
     version='1.2.0',
     author = "Roger Ineichen and the Zope Community",
-    author_email = "zope3-dev@zope.org",
+    author_email = "zope-dev@zope.org",
     description = "Simpler definition of ZPT macros.",
     long_description=(
         read('README.txt')
@@ -59,6 +59,7 @@ setup(
         test = ['z3c.template',
                 'z3c.pt>=1.0b4',
                 'lxml>=2.1.1',
+                'zope.app.pagetemplate',
                 'zope.app.testing',
                 'zope.testing'],
         ),
@@ -71,8 +72,7 @@ setup(
         'zope.publisher',
         'zope.schema',
         'zope.tales',
-        'zope.app.pagetemplate',
-        'z3c.pt.compat',
+        'z3c.ptcompat[zpt]',
         ],
     include_package_data = True,
     zip_safe = False,

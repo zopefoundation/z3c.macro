@@ -42,13 +42,11 @@ class MacroExpression(expressions.StringExpr):
         return get_macro_template(context, view, request, name)
     
 try:
-    from chameleon.zpt.interfaces import IExpressionTranslator
+    from chameleon.zpt.expressions import ExpressionTranslator
     from chameleon.core import types
         
-    class Z3CPTMacroExpression(object):
+    class Z3CPTMacroExpression(ExpressionTranslator):
         """Collect named IMacroTemplate via a TAL namespace called ``macro``."""
-
-        zope.interface.implements(IExpressionTranslator)
 
         macro_regex = re.compile(r'^[A-Za-z][A-Za-z0-9_-]*$')
         symbol = '_get_macro_template'

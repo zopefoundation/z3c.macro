@@ -26,7 +26,7 @@ from zope.component import zcml
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-from z3c.pt import compat
+import z3c.ptcompat as compat
 from z3c.macro import interfaces
 
 class IMacroDirective(zope.interface.Interface):
