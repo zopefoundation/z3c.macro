@@ -2,7 +2,13 @@
 CHANGES
 =======
 
-1.2.0 (unreleased)
+1.2.1 (unreleased)
+------------------
+
+- ...
+
+
+1.2.0 (2009-03-07)
 ------------------
 
 - Allow use of ``z3c.pt`` using ``z3c.ptcompat`` compatibility later.
