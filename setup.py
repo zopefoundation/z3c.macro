@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup(
     name='z3c.macro',
-    version='1.2.0',
+    version='1.2.0dev',
     author = "Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "Simpler definition of ZPT macros.",
@@ -51,7 +51,7 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
         'Framework :: Zope3'],
-    url = 'http://cheeseshop.python.org/pypi/z3c.macro',
+    url = 'http://pypi.python.org/pypi/z3c.macro',
     packages = find_packages('src'),
     package_dir = {'':'src'},
     namespace_packages = ['z3c'],
