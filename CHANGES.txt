@@ -5,7 +5,7 @@ CHANGES
 1.2.0 (2009-03-07)
 ------------------
 
-- Allow use of ``z3c.pt`` using ``z3c.ptcompat`` compatibility later.
+- Allow use of ``z3c.pt`` using ``z3c.ptcompat`` compatibility layer.
 
 - Change package's mailing list address to zope-dev at zope.org.
 
