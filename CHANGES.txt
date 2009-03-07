@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-1.2.1 (unreleased)
+1.2.1 (2009-03-07)
 ------------------
 
 - Presence of ``z3c.pt`` is not sufficient to register macro-utility,
