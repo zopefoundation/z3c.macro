@@ -5,7 +5,9 @@ CHANGES
 1.2.1 (unreleased)
 ------------------
 
-- ...
+- Presence of ``z3c.pt`` is not sufficient to register macro-utility,
+  ``chameleon.zpt`` is required otherwise the factory for the utility
+  is not defined.
 
 
 1.2.0 (2009-03-07)
