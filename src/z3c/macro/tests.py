@@ -17,17 +17,15 @@ $Id$
 """
 __docformat__ = 'restructuredtext'
 
-import unittest
-import itertools
-
 from zope import component
-from zope.testing import doctest
-from zope.testing.doctestunit import DocFileSuite
 from zope.app.testing import setup
 from zope.configuration import xmlconfig
-
+import doctest
+import itertools
+import unittest
 import z3c.pt
 import z3c.ptcompat
+
 
 def setUp(test):
     root = setup.placefulSetUp(site=True)
@@ -36,8 +34,8 @@ def setUp(test):
 def setUpZPT(test):
     z3c.ptcompat.config.disable()
     setUp(test)
-    
-    from zope.app.pagetemplate import metaconfigure
+
+    from zope.browserpage import metaconfigure
     from z3c.macro import tales
     metaconfigure.registerType('macro', tales.MacroExpression)
 
@@ -49,17 +47,17 @@ def setUpZ3CPT(suite):
     from z3c.macro import tales
     component.provideUtility(
         tales.z3cpt_macro_expression, name='macro')
-    
+
 def tearDown(test):
     setup.placefulTearDown()
 
 def test_suite():
     tests = ((
-        DocFileSuite('README.txt',
+        doctest.DocFileSuite('README.txt',
             setUp=setUp, tearDown=tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
             ),
-        DocFileSuite('zcml.txt', setUp=setUp, tearDown=tearDown,
+        doctest.DocFileSuite('zcml.txt', setUp=setUp, tearDown=tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,),
         ) for setUp in (setUpZ3CPT, setUpZPT))
 

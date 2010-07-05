@@ -59,7 +59,7 @@ setup(
         test = ['z3c.template',
                 'z3c.pt>=1.0b4',
                 'lxml>=2.1.1',
-                'zope.app.pagetemplate',
+                'zope.browserpage>=3.12',
                 'zope.app.testing',
                 'zope.testing'],
         ),
