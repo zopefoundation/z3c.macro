@@ -26,30 +26,47 @@ import unittest
 import z3c.pt
 import z3c.ptcompat
 
+import z3c.macro.tales
+import z3c.macro.zcml
+
+# default template class
+_templateViewClass = z3c.macro.zcml.ViewPageTemplateFile
+
 
 def setUp(test):
     root = setup.placefulSetUp(site=True)
     test.globs['root'] = root
 
-def setUpZPT(test):
-    z3c.ptcompat.config.disable()
-    setUp(test)
 
+def setUpZPT(test):
+    setUp(test)
     from zope.browserpage import metaconfigure
-    from z3c.macro import tales
-    metaconfigure.registerType('macro', tales.MacroExpression)
+    metaconfigure.registerType('macro', z3c.macro.tales.MacroExpression)
+
+    # apply correct template classes
+    global _templateViewClass
+    _templateViewClass = z3c.macro.zcml.ViewPageTemplateFile
+    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+    z3c.macro.zcml.ViewPageTemplateFile = ViewPageTemplateFile
+
 
 def setUpZ3CPT(suite):
-    z3c.ptcompat.config.enable()
     setUp(suite)
     xmlconfig.XMLConfig('configure.zcml', z3c.pt)()
+    xmlconfig.XMLConfig('configure.zcml', z3c.ptcompat)()
 
-    from z3c.macro import tales
-    component.provideUtility(
-        tales.z3cpt_macro_expression, name='macro')
+    # apply correct template classes
+    global _templateViewClass
+    _templateViewClass = z3c.macro.zcml.ViewPageTemplateFile
+    from z3c.pt.pagetemplate import ViewPageTemplateFile
+    z3c.macro.zcml.ViewPageTemplateFile = ViewPageTemplateFile
+
 
 def tearDown(test):
     setup.placefulTearDown()
+    global _templateViewClass
+    z3c.macro.zcml.ViewPageTemplateFile = _templateViewClass
+
 
 def test_suite():
     tests = ((
@@ -62,6 +79,7 @@ def test_suite():
         ) for setUp in (setUpZ3CPT, setUpZPT))
 
     return unittest.TestSuite(itertools.chain(*tests))
+
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')

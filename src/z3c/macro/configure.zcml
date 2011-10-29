@@ -11,11 +11,13 @@
       handler=".tales.MacroExpression"
       />
 
+<!--
   <configure zcml:condition="installed chameleon.zpt">
     <utility
        name="macro"
        component=".tales.z3cpt_macro_expression"
        />
   </configure>
+-->
 
 </configure>

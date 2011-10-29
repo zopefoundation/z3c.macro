@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup(
     name='z3c.macro',
-    version='1.3.1dev',
+    version='1.4.0',
     author = "Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "Simpler definition of ZPT macros.",
@@ -56,23 +56,28 @@ setup(
     package_dir = {'':'src'},
     namespace_packages = ['z3c'],
     extras_require = dict(
-        test = ['z3c.template',
-                'z3c.pt>=1.0b4',
-                'lxml>=2.1.1',
-                'zope.browserpage>=3.12',
-                'zope.app.testing',
-                'zope.testing'],
+        test = [
+            'z3c.pt >= 2.1',
+            'z3c.ptcompat>=1.0',
+            'z3c.template',
+            'zope.app.testing',
+            'zope.browserpage>=3.12',
+            'zope.testing',
+            ],
+        chameleon = [
+            'z3c.pt >= 2.1',
+            'z3c.ptcompat>=1.0',
+            ],
         ),
     install_requires = [
         'setuptools',
         'zope.component',
         'zope.configuration',
         'zope.interface',
-        'zope.pagetemplate',
+        'zope.pagetemplate >= 3.6.2'
         'zope.publisher',
         'zope.schema',
         'zope.tales',
-        'z3c.ptcompat[zpt]',
         ],
     include_package_data = True,
     zip_safe = False,

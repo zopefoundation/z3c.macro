@@ -83,9 +83,10 @@ Check if we get the macro template:
   ... </html>
   ... ''')
 
-  >>> from z3c.ptcompat import ViewPageTemplateFile, bind_template
+  >>> from zope.browserpage.viewpagetemplatefile import BoundPageTemplate
+  >>> from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
   >>> template = ViewPageTemplateFile(file)
-  >>> print bind_template(template, view)(macro=macro)
+  >>> print BoundPageTemplate(template, view)(macro=macro)
   <html>
     <body>
       <title>Pagelet skin</title>

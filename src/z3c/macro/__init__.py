@@ -14,3 +14,15 @@
 """
 $Id$
 """
+
+try:
+    # register chameleon ``macro`` tales expression for BaseTemplate
+    # there is not adapter or other registration support built in in 
+    # z3c.pt and apply our tales expression to any page template or
+    # offer a custom PageTemplate is no option
+    from z3c.macro import tales
+    import z3c.pt.pagetemplate
+    z3c.pt.pagetemplate.BaseTemplate.expression_types['macro'] = tales.MacroExpr
+except ImportError:
+    # we do not support z3c.pt
+    pass

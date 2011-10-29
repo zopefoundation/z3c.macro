@@ -26,8 +26,15 @@ from zope.component import zcml
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-import z3c.ptcompat as compat
+try:
+    # use z3c.pt if available
+    from z3c.pt.pagetemplate import ViewPageTemplateFile
+except ImportError:
+    # or default if not
+    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+
 from z3c.macro import interfaces
+
 
 class IMacroDirective(zope.interface.Interface):
     """Parameters for the template directive."""
@@ -105,7 +112,7 @@ class MacroFactory(object):
         self.contentType = contentType
 
     def __call__(self, context, view, request):
-        template = compat.ViewPageTemplateFile(self.path, 
+        template = ViewPageTemplateFile(self.path, 
             content_type=self.contentType)
         return template.macros[self.macro]
 
