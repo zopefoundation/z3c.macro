@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-1.4.1 (unreleased)
+1.4.1 (2011-11-15)
 ------------------
 
-...
+- bugfix, missing comma in setup install_requires list 
 
 
 1.4.0 (2011-10-29)

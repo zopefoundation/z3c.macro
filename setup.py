@@ -23,7 +23,7 @@ def read(*rnames):
 
 setup(
     name='z3c.macro',
-    version='1.4.1dev',
+    version='1.4.1',
     author = "Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "Simpler definition of ZPT macros.",
@@ -74,7 +74,7 @@ setup(
         'zope.component',
         'zope.configuration',
         'zope.interface',
-        'zope.pagetemplate >= 3.6.2'
+        'zope.pagetemplate >= 3.6.2',
         'zope.publisher',
         'zope.schema',
         'zope.tales',
