@@ -25,13 +25,7 @@ from zope.configuration.exceptions import ConfigurationError
 from zope.component import zcml
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-
-try:
-    # use z3c.pt if available
-    from z3c.pt.pagetemplate import ViewPageTemplateFile
-except ImportError:
-    # or default if not
-    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 
 from z3c.macro import interfaces
 

@@ -17,20 +17,14 @@ $Id$
 """
 __docformat__ = 'restructuredtext'
 
-from zope import component
 from zope.app.testing import setup
 from zope.configuration import xmlconfig
 import doctest
 import itertools
 import unittest
-import z3c.pt
-import z3c.ptcompat
 
 import z3c.macro.tales
 import z3c.macro.zcml
-
-# default template class
-_templateViewClass = z3c.macro.zcml.ViewPageTemplateFile
 
 
 def setUp(test):
@@ -43,29 +37,17 @@ def setUpZPT(test):
     from zope.browserpage import metaconfigure
     metaconfigure.registerType('macro', z3c.macro.tales.MacroExpression)
 
-    # apply correct template classes
-    global _templateViewClass
-    _templateViewClass = z3c.macro.zcml.ViewPageTemplateFile
-    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
-    z3c.macro.zcml.ViewPageTemplateFile = ViewPageTemplateFile
-
 
 def setUpZ3CPT(suite):
     setUp(suite)
+    import z3c.pt
+    import z3c.ptcompat
     xmlconfig.XMLConfig('configure.zcml', z3c.pt)()
     xmlconfig.XMLConfig('configure.zcml', z3c.ptcompat)()
-
-    # apply correct template classes
-    global _templateViewClass
-    _templateViewClass = z3c.macro.zcml.ViewPageTemplateFile
-    from z3c.pt.pagetemplate import ViewPageTemplateFile
-    z3c.macro.zcml.ViewPageTemplateFile = ViewPageTemplateFile
 
 
 def tearDown(test):
     setup.placefulTearDown()
-    global _templateViewClass
-    z3c.macro.zcml.ViewPageTemplateFile = _templateViewClass
 
 
 def test_suite():
