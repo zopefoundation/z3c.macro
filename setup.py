@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Setup
-
-$Id$
 """
 import os
 from setuptools import setup, find_packages
@@ -47,6 +45,12 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: Implementation :: CPython',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
@@ -60,7 +64,6 @@ setup(
             'z3c.pt >= 2.1',
             'z3c.ptcompat>=1.0',
             'z3c.template',
-            'zope.app.testing',
             'zope.browserpage>=3.12',
             'zope.testing',
             ],
@@ -79,6 +82,14 @@ setup(
         'zope.schema',
         'zope.tales',
         ],
+    tests_require=[
+        'z3c.pt >= 2.1',
+        'z3c.ptcompat>=1.0',
+        'z3c.template',
+        'zope.browserpage>=3.12',
+        'zope.testing',
+        ],
+    test_suite='z3c.macro.tests.test_suite',
     include_package_data = True,
     zip_safe = False,
     )

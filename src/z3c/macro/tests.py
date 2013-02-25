@@ -12,24 +12,21 @@
 #
 ##############################################################################
 """Viewlet tests
-
-$Id$
 """
-__docformat__ = 'restructuredtext'
-
-from zope.app.testing import setup
-from zope.configuration import xmlconfig
 import doctest
 import itertools
 import unittest
+import zope.component.testing
+from zope.configuration import xmlconfig
 
 import z3c.macro.tales
 import z3c.macro.zcml
 
 
 def setUp(test):
-    root = setup.placefulSetUp(site=True)
-    test.globs['root'] = root
+    zope.component.testing.setUp(test)
+    #root = setup.placefulSetUp(site=True)
+    #test.globs['root'] = root
 
 
 def setUpZPT(test):
@@ -47,7 +44,7 @@ def setUpZ3CPT(suite):
 
 
 def tearDown(test):
-    setup.placefulTearDown()
+    zope.component.testing.tearDown(test)
 
 
 def test_suite():

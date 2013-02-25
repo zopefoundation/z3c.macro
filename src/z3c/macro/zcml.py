@@ -11,11 +11,8 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
+"""ZCML Meta-Directives
 """
-$Id$
-"""
-__docformat__ = "reStructuredText"
-
 import os
 
 import zope.interface
@@ -35,7 +32,7 @@ class IMacroDirective(zope.interface.Interface):
 
     template = zope.configuration.fields.Path(
         title=u'Template defining a named macro.',
-        description=u"""Refers to a file containing a page template 
+        description=u"""Refers to a file containing a page template
             (should end in extension ``.pt`` or ``.html``).
             """,
         required=True,
@@ -44,12 +41,12 @@ class IMacroDirective(zope.interface.Interface):
     name = zope.schema.TextLine(
         title=u'Name',
         description=u"""
-            The macro name which this macro is registered for. The macro 
-            name can be the same defined in metal:define-macro but does 
-            not have to be the same. If no macro attribute is given the 
+            The macro name which this macro is registered for. The macro
+            name can be the same defined in metal:define-macro but does
+            not have to be the same. If no macro attribute is given the
             name is used as the name defined in metal:define-macro. If you
             need to register a macro under a different name as the defined
-            one, you can use the macro attribute which have to reference 
+            one, you can use the macro attribute which have to reference
             the metal.define-macro name. The TALES expression calls macros
             by this name and returns the macro within the same name or with
             the name defined in the macro attribute.
@@ -61,8 +58,8 @@ class IMacroDirective(zope.interface.Interface):
     macro = zope.schema.TextLine(
         title=u'Macro',
         description=u"""
-            The name of the macro to be used. This allows us to reference 
-            the named  macro defined with metal:define-macro if we use a 
+            The name of the macro to be used. This allows us to reference
+            the named  macro defined with metal:define-macro if we use a
             different IMacroDirective name.
             """,
         required=False,
@@ -89,7 +86,7 @@ class IMacroDirective(zope.interface.Interface):
         default=IDefaultBrowserLayer,
         )
 
-    contentType = zope.schema.BytesLine(
+    contentType = zope.schema.ASCIILine(
         title=u'Content Type',
         description=u'The content type identifies the type of data.',
         default='text/html',
@@ -106,24 +103,24 @@ class MacroFactory(object):
         self.contentType = contentType
 
     def __call__(self, context, view, request):
-        template = ViewPageTemplateFile(self.path, 
+        template = ViewPageTemplateFile(self.path,
             content_type=self.contentType)
         return template.macros[self.macro]
 
 
-def registerMacroFactory(_context, path, name, macro, for_, view, layer, 
+def registerMacroFactory(_context, path, name, macro, for_, view, layer,
     contentType):
     """Register a named macro factory adapter."""
 
     factory = MacroFactory(path, macro, contentType)
 
     # register the macro
-    zcml.adapter(_context, (factory,), interfaces.IMacroTemplate, 
+    zcml.adapter(_context, (factory,), interfaces.IMacroTemplate,
         (for_, view, layer), name=name)
 
 
 def macroDirective(_context, template, name, macro=u'',
-    for_=zope.interface.Interface, view=IBrowserView, 
+    for_=zope.interface.Interface, view=IBrowserView,
     layer=IDefaultBrowserLayer, contentType='text/html'):
 
     # Make sure that the template exists
@@ -134,5 +131,5 @@ def macroDirective(_context, template, name, macro=u'',
     if not macro:
         macro = name
 
-    registerMacroFactory(_context, path, name, macro, for_, view, layer, 
+    registerMacroFactory(_context, path, name, macro, for_, view, layer,
         contentType)

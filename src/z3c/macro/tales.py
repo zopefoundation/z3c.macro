@@ -29,10 +29,9 @@ def get_macro_template(context, view, request, name):
     return zope.component.getMultiAdapter(
         (context, view, request), interface=interfaces.IMacroTemplate, name=name)
 
+@zope.interface.implementer(interfaces.IMacroExpression)
 class MacroExpression(expressions.StringExpr):
     """Collect named IMacroTemplate via a TAL namespace called ``macro``."""
-
-    zope.interface.implements(interfaces.IMacroExpression)
 
     def __call__(self, econtext):
         name = super(MacroExpression, self).__call__(econtext)

@@ -11,8 +11,9 @@ We start with creating a content object that is used as a view context later:
   >>> import zope.component
   >>> from zope.publisher.interfaces.browser import IBrowserView
   >>> from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-  >>> class Content(object):
-  ...     zope.interface.implements(zope.interface.Interface)
+  >>> @zope.interface.implementer(zope.interface.Interface)
+  ... class Content(object):
+  ...     pass
 
   >>> content = Content()
 
@@ -29,7 +30,8 @@ Macro Template
 We define a macro template as a adapter providing IMacroTemplate:
 
   >>> path = os.path.join(temp_dir, 'navigation.pt')
-  >>> open(path, 'w').write('''
+  >>> with open(path, 'w') as file:
+  ...     _ = file.write('''
   ... <metal:block define-macro="navigation">
   ...   <div tal:content="title">---</div>
   ... </metal:block>
@@ -60,7 +62,8 @@ providing IMacroTemplate and uses them or fills a slot if defined in the
 Let's create a page template using the ``navigation`` macros:
 
   >>> path = os.path.join(temp_dir, 'first.pt')
-  >>> open(path, 'w').write('''
+  >>> with open(path, 'w') as file:
+  ...     _ = file.write('''
   ... <html>
   ...   <body>
   ...     <h1>First Page</h1>
@@ -90,12 +93,12 @@ Let's now create a view using this page template:
   ...     def __call__(self, **kwargs):
   ...         return self.index(**kwargs)
 
-  >>> from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile  
+  >>> from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
   >>> def SimpleViewClass(path, name=u''):
   ...     return type(
   ...         "SimpleViewClass", (simple,),
   ...         {'index': ViewPageTemplateFile(path), '__name__': name})
-  
+
   >>> FirstPage = SimpleViewClass(path, name='first.html')
 
   >>> zope.component.provideAdapter(
@@ -111,7 +114,7 @@ Finally we look up the view and render it:
 
   >>> view = zope.component.getMultiAdapter((content, request),
   ...                                       name='first.html')
-  >>> print view().strip()
+  >>> print(view().strip())
   <html>
     <body>
       <h1>First Page</h1>
@@ -131,7 +134,8 @@ Slot
 We can also define a macro slot and fill it with given content:
 
   >>> path = os.path.join(temp_dir, 'addons.pt')
-  >>> open(path, 'w').write('''
+  >>> with open(path, 'w') as file:
+  ...     _ = file.write('''
   ... <metal:block define-macro="addons">
   ...   Content before header
   ...   <metal:block define-slot="header">
@@ -156,7 +160,8 @@ and register them as adapter:
 Let's create a page template using the ``addons`` macros:
 
   >>> path = os.path.join(temp_dir, 'second.pt')
-  >>> open(path, 'w').write('''
+  >>> with open(path, 'w') as file:
+  ...     _ = file.write('''
   ... <html>
   ...   <body>
   ...     <h1>Second Page</h1>
@@ -187,7 +192,7 @@ Finally we look up the view and render it:
 
   >>> view = zope.component.getMultiAdapter((content, request),
   ...                                       name='second.html')
-  >>> print view().strip()
+  >>> print(view().strip())
   <html>
     <body>
       <h1>Second Page</h1>

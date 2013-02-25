@@ -14,8 +14,9 @@ First define a template which defines a macro:
 
   >>> import os, tempfile
   >>> temp_dir = tempfile.mkdtemp()
-  >>> file = os.path.join(temp_dir, 'file.pt')
-  >>> open(file, 'w').write('''
+  >>> file_path = os.path.join(temp_dir, 'file.pt')
+  >>> with open(file_path, 'w') as file:
+  ...     _ = file.write('''
   ... <html>
   ...   <head>
   ...     <metal:block define-macro="title">
@@ -38,13 +39,14 @@ and register the macro provider within the ``z3c:macroProvider`` directive:
   ...       name="title"
   ...       />
   ... </configure>
-  ... """ % file, context=context)
+  ... """ % file_path, context=context)
 
 We need a content object...
 
   >>> import zope.interface
-  >>> class Content(object):
-  ...     zope.interface.implements(zope.interface.Interface)
+  >>> @zope.interface.implementer(zope.interface.Interface)
+  ... class Content(object):
+  ...     pass
   >>> content = Content()
 
 and we need a view...
@@ -74,8 +76,9 @@ Check if we get the macro template:
 
   >>> import os, tempfile
   >>> temp_dir = tempfile.mkdtemp()
-  >>> file = os.path.join(temp_dir, 'test.pt')
-  >>> open(file, 'w').write('''
+  >>> test_path = os.path.join(temp_dir, 'test.pt')
+  >>> with open(test_path, 'w') as file:
+  ...     _ = file.write('''
   ... <html>
   ...   <body>
   ...     <metal:macro use-macro="options/macro" />
@@ -85,8 +88,8 @@ Check if we get the macro template:
 
   >>> from zope.browserpage.viewpagetemplatefile import BoundPageTemplate
   >>> from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
-  >>> template = ViewPageTemplateFile(file)
-  >>> print BoundPageTemplate(template, view)(macro=macro)
+  >>> template = ViewPageTemplateFile(test_path)
+  >>> print(BoundPageTemplate(template, view)(macro=macro))
   <html>
     <body>
       <title>Pagelet skin</title>
