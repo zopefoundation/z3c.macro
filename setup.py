@@ -21,7 +21,7 @@ def read(*rnames):
 
 setup(
     name='z3c.macro',
-    version='1.4.3dev',
+    version='2.0.0a1',
     author = "Roger Ineichen and the Zope Community",
     author_email = "zope-dev@zope.org",
     description = "Simpler definition of ZPT macros.",
