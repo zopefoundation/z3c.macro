@@ -49,13 +49,15 @@ def tearDown(test):
 
 def test_suite():
     tests = ((
-        doctest.DocFileSuite('README.txt',
+        doctest.DocFileSuite(
+            'README.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
-            ),
-        doctest.DocFileSuite('zcml.txt', setUp=setUp, tearDown=tearDown,
+        ),
+        doctest.DocFileSuite(
+            'zcml.rst', setUp=setUp, tearDown=tearDown,
             optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,),
-        ) for setUp in (setUpZ3CPT, setUpZPT))
+    ) for setUp in (setUpZ3CPT, setUpZPT))
 
     return unittest.TestSuite(itertools.chain(*tests))
 

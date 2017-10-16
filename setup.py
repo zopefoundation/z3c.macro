@@ -17,62 +17,69 @@ import os
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
+
+CHAMELEON_REQUIRES = [
+    'z3c.pt >= 2.1',
+    'z3c.ptcompat >= 1.0',
+]
+
+TESTS_REQUIRE = CHAMELEON_REQUIRES + [
+    'z3c.template',
+    'zope.browserpage >= 3.12',
+    'zope.testing',
+    'zope.testrunner',
+]
 
 setup(
     name='z3c.macro',
     version='2.0.1.dev0',
-    author = "Roger Ineichen and the Zope Community",
-    author_email = "zope-dev@zope.org",
-    description = "Simpler definition of ZPT macros.",
+    author="Roger Ineichen and the Zope Community",
+    author_email="zope-dev@zope.org",
+    description="Simpler definition of ZPT macros.",
     long_description=(
-        read('README.txt')
+        read('README.rst')
         + '\n\n' +
         'Detailed Documentation\n'
         '======================\n'
         + '\n\n' +
-        read('src', 'z3c', 'macro', 'README.txt')
+        read('src', 'z3c', 'macro', 'README.rst')
         + '\n\n' +
-        read('src', 'z3c', 'macro', 'zcml.txt')
+        read('src', 'z3c', 'macro', 'zcml.rst')
         + '\n\n' +
-        read('CHANGES.txt')
+        read('CHANGES.rst')
         ),
-    license = "ZPL 2.1",
-    keywords = "zope3 macro pagetemplate zpt",
-    classifiers = [
+    license="ZPL 2.1",
+    keywords="zope3 macro pagetemplate zpt",
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
-        'Framework :: Zope3'],
-    url = 'http://pypi.python.org/pypi/z3c.macro',
-    packages = find_packages('src'),
-    package_dir = {'':'src'},
-    namespace_packages = ['z3c'],
-    extras_require = dict(
-        test = [
-            'z3c.pt >= 2.1',
-            'z3c.ptcompat>=1.0',
-            'z3c.template',
-            'zope.browserpage>=3.12',
-            'zope.testing',
-            ],
-        chameleon = [
-            'z3c.pt >= 2.1',
-            'z3c.ptcompat>=1.0',
-            ],
-        ),
-    install_requires = [
+        'Framework :: Zope3',
+    ],
+    url='https://github.com/zopefoundation/z3c.macro',
+    packages=find_packages('src'),
+    package_dir={'':'src'},
+    namespace_packages=['z3c'],
+    extras_require={
+        'test': TESTS_REQUIRE,
+        'chameleon': CHAMELEON_REQUIRES,
+    },
+    install_requires=[
         'setuptools',
         'zope.component',
         'zope.configuration',
@@ -82,14 +89,8 @@ setup(
         'zope.schema',
         'zope.tales',
         ],
-    tests_require=[
-        'z3c.pt >= 2.1',
-        'z3c.ptcompat>=1.0',
-        'z3c.template',
-        'zope.browserpage>=3.12',
-        'zope.testing',
-        ],
+    tests_require=TESTS_REQUIRE,
     test_suite='z3c.macro.tests.test_suite',
-    include_package_data = True,
-    zip_safe = False,
-    )
+    include_package_data=True,
+    zip_safe=False,
+)
