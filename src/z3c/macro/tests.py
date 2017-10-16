@@ -15,9 +15,13 @@
 """
 import doctest
 import itertools
+import re
 import unittest
+
 import zope.component.testing
 from zope.configuration import xmlconfig
+
+from zope.testing import renormalizing
 
 import z3c.macro.tales
 import z3c.macro.zcml
@@ -47,16 +51,33 @@ def tearDown(test):
     zope.component.testing.tearDown(test)
 
 
+checker = renormalizing.RENormalizing([
+    (re.compile("u('.*?')"), r"\1"),
+    (re.compile('u(".*?")'), r"\1"),
+    # Python 3 adds module name to exceptions;
+    # The output of this one is too complex for IGNORE_EXCEPTION_MODULE_IN_PYTHON2
+    (re.compile('zope.configuration.xmlconfig.ZopeXMLConfigurationError'),
+     'ZopeXMLConfigurationError'),
+])
+
 def test_suite():
     tests = ((
         doctest.DocFileSuite(
             'README.rst',
             setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
+            checker=checker,
+            optionflags=(doctest.NORMALIZE_WHITESPACE
+                         | doctest.ELLIPSIS
+                         | renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2),
         ),
         doctest.DocFileSuite(
-            'zcml.rst', setUp=setUp, tearDown=tearDown,
-            optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,),
+            'zcml.rst',
+            setUp=setUp, tearDown=tearDown,
+            checker=checker,
+            optionflags=(doctest.NORMALIZE_WHITESPACE
+                         | doctest.ELLIPSIS
+                         | renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2),
+        )
     ) for setUp in (setUpZ3CPT, setUpZPT))
 
     return unittest.TestSuite(itertools.chain(*tests))

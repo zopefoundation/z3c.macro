@@ -1,6 +1,6 @@
-===============
-macro directive
-===============
+=================
+ macro directive
+=================
 
 A macro directive can be used for register macros. Take a look at the
 README.txt which explains the macro TALES expression.
@@ -95,3 +95,22 @@ Check if we get the macro template:
       <title>Pagelet skin</title>
     </body>
   </html>
+
+Error Conditions
+================
+
+If the file is not available, the directive fails:
+
+  >>> context = xmlconfig.string("""
+  ... <configure
+  ...     xmlns:z3c="http://namespaces.zope.org/z3c">
+  ...   <z3c:macro
+  ...       template="this_file_does_not_exist"
+  ...       name="title"
+  ...       />
+  ... </configure>
+  ... """, context=context)
+  Traceback (most recent call last):
+  ...
+  ZopeXMLConfigurationError: File "<string>", line 4.2-7.8
+      ConfigurationError: ('No such file', '...this_file_does_not_exist')
