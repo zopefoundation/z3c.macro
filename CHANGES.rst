@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-2.1.0 (unreleased)
+2.1.0 (2017-10-17)
 ------------------
 
 - Drop support for Python 2.6 and 3.3.
