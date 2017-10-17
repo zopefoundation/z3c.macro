@@ -104,24 +104,24 @@ class MacroFactory(object):
 
     def __call__(self, context, view, request):
         template = ViewPageTemplateFile(self.path,
-            content_type=self.contentType)
+                                        content_type=self.contentType)
         return template.macros[self.macro]
 
 
 def registerMacroFactory(_context, path, name, macro, for_, view, layer,
-    contentType):
+                         contentType):
     """Register a named macro factory adapter."""
 
     factory = MacroFactory(path, macro, contentType)
 
     # register the macro
     zcml.adapter(_context, (factory,), interfaces.IMacroTemplate,
-        (for_, view, layer), name=name)
+                 (for_, view, layer), name=name)
 
 
 def macroDirective(_context, template, name, macro=u'',
-    for_=zope.interface.Interface, view=IBrowserView,
-    layer=IDefaultBrowserLayer, contentType='text/html'):
+                   for_=zope.interface.Interface, view=IBrowserView,
+                   layer=IDefaultBrowserLayer, contentType='text/html'):
 
     # Make sure that the template exists
     path = os.path.abspath(str(_context.path(template)))
@@ -132,4 +132,4 @@ def macroDirective(_context, template, name, macro=u'',
         macro = name
 
     registerMacroFactory(_context, path, name, macro, for_, view, layer,
-        contentType)
+                         contentType)

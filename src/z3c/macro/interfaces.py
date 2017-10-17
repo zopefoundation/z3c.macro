@@ -12,7 +12,7 @@
 #
 ##############################################################################
 """
-$Id$
+Interfaces for z3c.macro.
 """
 
 from zope.tales import interfaces
@@ -40,8 +40,8 @@ class IMacroExpression(interfaces.ITALESExpression):
         this content get replaced by the defined macro
       </metal:block>
 
-    The ``macro:`` TALES expression calles a named adapter adapting 
+    The ``macro:`` TALES expression calles a named adapter adapting
     (context, request) or (context, request, view), depending on the usage
-    of the view attribute in the macro directive. A macro provides the 
+    of the view attribute in the macro directive. A macro provides the
     interface IMacroTemplate.
     """

@@ -13,11 +13,10 @@
 ##############################################################################
 """Provider tales expression registrations
 
-$Id$
+
 """
 __docformat__ = 'restructuredtext'
 
-import re
 
 import zope.component
 import zope.interface
@@ -39,10 +38,10 @@ class MacroExpression(expressions.StringExpr):
         request = econtext.vars['request']
         view = econtext.vars['view']
         return get_macro_template(context, view, request, name)
-    
+
 try:
     # define chameleon  ``macro`` expression
-    
+
     from chameleon.tales import StringExpr
     from chameleon.astutil import Static
     from chameleon.astutil import Symbol
@@ -60,16 +59,15 @@ try:
         traverser = Static(
             template("cls()", cls=Symbol(MacroGetter), mode="eval")
             )
-    
+
         def __call__(self, target, engine):
             assignment = super(MacroExpr, self).__call__(target, engine)
-    
-            return assignment + \
-                   template(
+
+            return assignment + template(
                 "target = traverse(context, request, view, target.strip())",
                 target=target,
                 traverse=self.traverser,
-                )
+            )
 
-except ImportError:
+except ImportError: # pragma: no cover
     pass
