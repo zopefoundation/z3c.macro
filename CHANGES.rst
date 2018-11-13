@@ -2,17 +2,23 @@
 CHANGES
 =======
 
-2.1.1 (unreleased)
+2.2.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Removed Python 3.5 support, added Python 3.7.
+
+- Fixed up tests.
+
+- Fix docstring that caused DeprecationWarning.
 
 
 2.1.0 (2017-10-17)
 ------------------
 
 - Drop support for Python 2.6 and 3.3.
+
 - Add support for Python 3.4, 3.5 and 3.6.
+
 - Add support for PyPy.
 
 

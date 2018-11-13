@@ -112,5 +112,4 @@ If the file is not available, the directive fails:
   ... """, context=context)
   Traceback (most recent call last):
   ...
-  ZopeXMLConfigurationError: File "<string>", line 4.2-7.8
-      ConfigurationError: ('No such file', '...this_file_does_not_exist')
+  zope.configuration.exceptions.ConfigurationError: ...

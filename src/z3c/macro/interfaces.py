@@ -31,8 +31,8 @@ class IMacroExpression(interfaces.ITALESExpression):
       <metal:block use-macro="macro:macroname">
         <metal:block fill-slot="slotname">
           this content get rendered in the defined slot of the macro
-        <\metal:block>
-      <\metal:block>
+        </metal:block>
+      </metal:block>
 
       or
 
