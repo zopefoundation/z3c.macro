@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-2.1.1 (2018-11-13)
+2.2.0 (2018-11-13)
 ------------------
 
 - Removed Python 3.5 support, added Python 3.7.
