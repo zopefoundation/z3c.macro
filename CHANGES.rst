@@ -7,6 +7,8 @@ CHANGES
 
 - Fix list of supported Python versions in Trove classifiers.
 
+- Flake8 the code.
+
 
 2.2.0 (2018-11-13)
 ------------------

@@ -29,8 +29,8 @@ import z3c.macro.zcml
 
 def setUp(test):
     zope.component.testing.setUp(test)
-    #root = setup.placefulSetUp(site=True)
-    #test.globs['root'] = root
+    # root = setup.placefulSetUp(site=True)
+    # test.globs['root'] = root
 
 
 def setUpZPT(test):
@@ -55,10 +55,12 @@ checker = renormalizing.RENormalizing([
     (re.compile("u('.*?')"), r"\1"),
     (re.compile('u(".*?")'), r"\1"),
     # Python 3 adds module name to exceptions;
-    # The output of this one is too complex for IGNORE_EXCEPTION_MODULE_IN_PYTHON2
+    # The output of this one is too complex for
+    # IGNORE_EXCEPTION_MODULE_IN_PYTHON2
     (re.compile('zope.configuration.xmlconfig.ZopeXMLConfigurationError'),
      'ZopeXMLConfigurationError'),
 ])
+
 
 def test_suite():
     tests = ((

@@ -13,20 +13,20 @@
 ##############################################################################
 """Provider tales expression registrations
 
-
 """
-__docformat__ = 'restructuredtext'
-
-
 import zope.component
 import zope.interface
 from zope.tales import expressions
 
 from z3c.macro import interfaces
 
+
 def get_macro_template(context, view, request, name):
     return zope.component.getMultiAdapter(
-        (context, view, request), interface=interfaces.IMacroTemplate, name=name)
+        (context, view, request),
+        interface=interfaces.IMacroTemplate,
+        name=name)
+
 
 @zope.interface.implementer(interfaces.IMacroExpression)
 class MacroExpression(expressions.StringExpr):
@@ -39,6 +39,7 @@ class MacroExpression(expressions.StringExpr):
         view = econtext.vars['view']
         return get_macro_template(context, view, request, name)
 
+
 try:
     # define chameleon  ``macro`` expression
 
@@ -48,7 +49,7 @@ try:
     from chameleon.codegen import template
 
     class MacroGetter(object):
-        """Collect named IMacroTemplate via a TAL namespace called ``macro``."""
+        """Collect named IMacroTemplate via a TAL namespace called `macro`."""
 
         def __call__(self, context, request, view, name):
             return zope.component.getMultiAdapter(
@@ -58,7 +59,7 @@ try:
     class MacroExpr(StringExpr):
         traverser = Static(
             template("cls()", cls=Symbol(MacroGetter), mode="eval")
-            )
+        )
 
         def __call__(self, target, engine):
             assignment = super(MacroExpr, self).__call__(target, engine)
@@ -69,5 +70,5 @@ try:
                 traverse=self.traverser,
             )
 
-except ImportError: # pragma: no cover
+except ImportError:  # pragma: no cover
     pass
