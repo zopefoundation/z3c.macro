@@ -49,7 +49,7 @@ try:
     from chameleon.codegen import template
 
     class MacroGetter(object):
-        """Collect named IMacroTemplate via a TAL namespace called `macro`."""
+        """Collect named IMacroTemplate via TAL namespace called ``macro``."""
 
         def __call__(self, context, request, view, name):
             return zope.component.getMultiAdapter(
