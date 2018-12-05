@@ -5,7 +5,10 @@ CHANGES
 2.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix list of supported Python versions in Trove classifiers: The currently
+  supported Python versions are 2.7, 3.6, 3.7, PyPy2 and PyPy3.
+
+- Flake8 the code.
 
 
 2.2.0 (2018-11-13)

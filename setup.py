@@ -16,9 +16,11 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
         return f.read()
+
 
 CHAMELEON_REQUIRES = [
     'z3c.pt >= 2.1',
@@ -49,7 +51,7 @@ setup(
         read('src', 'z3c', 'macro', 'zcml.rst')
         + '\n\n' +
         read('CHANGES.rst')
-        ),
+    ),
     license="ZPL 2.1",
     keywords="zope3 macro pagetemplate zpt",
     classifiers=[
@@ -61,9 +63,8 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
@@ -73,7 +74,7 @@ setup(
     ],
     url='https://github.com/zopefoundation/z3c.macro',
     packages=find_packages('src'),
-    package_dir={'':'src'},
+    package_dir={'': 'src'},
     namespace_packages=['z3c'],
     extras_require={
         'test': TESTS_REQUIRE,
@@ -88,7 +89,7 @@ setup(
         'zope.publisher',
         'zope.schema',
         'zope.tales',
-        ],
+    ],
     tests_require=TESTS_REQUIRE,
     test_suite='z3c.macro.tests.test_suite',
     include_package_data=True,

@@ -14,8 +14,8 @@
 """
 z3c.macro package.
 
-Importing this package has the side-effect of registering the 'macro' expression
-type in Chameleon (if z3c.pt is installed)
+Importing this package has the side-effect of registering the 'macro'
+expression type in Chameleon (if z3c.pt is installed)
 """
 
 try:
@@ -25,7 +25,8 @@ try:
     # offer a custom PageTemplate is no option
     from z3c.macro import tales
     import z3c.pt.pagetemplate
-    z3c.pt.pagetemplate.BaseTemplate.expression_types['macro'] = tales.MacroExpr
-except ImportError: # pragma: no cover
+    z3c.pt.pagetemplate.BaseTemplate.expression_types[
+        'macro'] = tales.MacroExpr
+except ImportError:  # pragma: no cover
     # we do not support z3c.pt
     pass
