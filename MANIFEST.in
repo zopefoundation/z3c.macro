@@ -1,13 +1,9 @@
 include *.rst
 include *.txt
-include tox.ini
 include .coveragerc
-
-include buildout.cfg
-exclude buildout.cfg
-
 include .travis.yml
-exclude .travis.yml
+include buildout.cfg
+include tox.ini
 
 recursive-include src *.rst
 recursive-include src *.zcml
