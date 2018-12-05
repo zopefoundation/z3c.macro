@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-2.2.1 (unreleased)
+2.2.1 (2018-12-05)
 ------------------
 
 - Fix list of supported Python versions in Trove classifiers: The currently
