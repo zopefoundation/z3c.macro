@@ -33,7 +33,7 @@ class MacroExpression(expressions.StringExpr):
     """Collect named IMacroTemplate via a TAL namespace called ``macro``."""
 
     def __call__(self, econtext):
-        name = super(MacroExpression, self).__call__(econtext)
+        name = super().__call__(econtext)
         context = econtext.vars['context']
         request = econtext.vars['request']
         view = econtext.vars['view']
@@ -48,7 +48,7 @@ try:
     from chameleon.codegen import template
     from chameleon.tales import StringExpr
 
-    class MacroGetter(object):
+    class MacroGetter:
         """Collect named IMacroTemplate via TAL namespace called ``macro``."""
 
         def __call__(self, context, request, view, name):
@@ -62,7 +62,7 @@ try:
         )
 
         def __call__(self, target, engine):
-            assignment = super(MacroExpr, self).__call__(target, engine)
+            assignment = super().__call__(target, engine)
 
             return assignment + template(
                 "target = traverse(context, request, view, target.strip())",

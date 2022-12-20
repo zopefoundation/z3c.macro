@@ -31,16 +31,16 @@ class IMacroDirective(zope.interface.Interface):
     """Parameters for the template directive."""
 
     template = zope.configuration.fields.Path(
-        title=u'Template defining a named macro.',
-        description=u"""Refers to a file containing a page template
+        title='Template defining a named macro.',
+        description="""Refers to a file containing a page template
             (should end in extension ``.pt`` or ``.html``).
             """,
         required=True,
         )
 
     name = zope.schema.TextLine(
-        title=u'Name',
-        description=u"""
+        title='Name',
+        description="""
             The macro name which this macro is registered for. The macro
             name can be the same defined in metal:define-macro but does
             not have to be the same. If no macro attribute is given the
@@ -52,49 +52,49 @@ class IMacroDirective(zope.interface.Interface):
             the name defined in the macro attribute.
             """,
         required=True,
-        default=u'',
+        default='',
         )
 
     macro = zope.schema.TextLine(
-        title=u'Macro',
-        description=u"""
+        title='Macro',
+        description="""
             The name of the macro to be used. This allows us to reference
             the named  macro defined with metal:define-macro if we use a
             different IMacroDirective name.
             """,
         required=False,
-        default=u'',
+        default='',
         )
 
     for_ = zope.configuration.fields.GlobalObject(
-        title=u'Context',
-        description=u'The context for which the macro should be used',
+        title='Context',
+        description='The context for which the macro should be used',
         required=False,
         default=zope.interface.Interface,
         )
 
     view = zope.configuration.fields.GlobalObject(
-        title=u'View',
-        description=u'The view for which the macro should be used',
+        title='View',
+        description='The view for which the macro should be used',
         required=False,
         default=IBrowserView)
 
     layer = zope.configuration.fields.GlobalObject(
-        title=u'Layer',
-        description=u'The layer for which the macro should be used',
+        title='Layer',
+        description='The layer for which the macro should be used',
         required=False,
         default=IDefaultBrowserLayer,
         )
 
     contentType = zope.schema.ASCIILine(
-        title=u'Content Type',
-        description=u'The content type identifies the type of data.',
+        title='Content Type',
+        description='The content type identifies the type of data.',
         default='text/html',
         required=False,
         )
 
 
-class MacroFactory(object):
+class MacroFactory:
     """Macro factory."""
 
     def __init__(self, path, macro, contentType):
@@ -119,7 +119,7 @@ def registerMacroFactory(_context, path, name, macro, for_, view, layer,
                  (for_, view, layer), name=name)
 
 
-def macroDirective(_context, template, name, macro=u'',
+def macroDirective(_context, template, name, macro='',
                    for_=zope.interface.Interface, view=IBrowserView,
                    layer=IDefaultBrowserLayer, contentType='text/html'):
 
