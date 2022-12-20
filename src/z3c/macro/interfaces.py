@@ -15,8 +15,8 @@
 Interfaces for z3c.macro.
 """
 
-from zope.tales import interfaces
 from zope.pagetemplate.interfaces import IPageTemplate
+from zope.tales import interfaces
 
 
 class IMacroTemplate(IPageTemplate):

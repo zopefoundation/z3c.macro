@@ -43,10 +43,10 @@ class MacroExpression(expressions.StringExpr):
 try:
     # define chameleon  ``macro`` expression
 
-    from chameleon.tales import StringExpr
     from chameleon.astutil import Static
     from chameleon.astutil import Symbol
     from chameleon.codegen import template
+    from chameleon.tales import StringExpr
 
     class MacroGetter(object):
         """Collect named IMacroTemplate via TAL namespace called ``macro``."""
