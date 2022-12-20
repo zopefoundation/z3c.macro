@@ -15,14 +15,14 @@
 """
 import os
 
+import zope.configuration.fields
 import zope.interface
 import zope.schema
-import zope.configuration.fields
-from zope.configuration.exceptions import ConfigurationError
+from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import zcml
+from zope.configuration.exceptions import ConfigurationError
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 
 from z3c.macro import interfaces
 
