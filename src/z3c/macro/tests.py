@@ -19,7 +19,6 @@ import unittest
 
 import zope.component.testing
 from zope.configuration import xmlconfig
-from zope.testing import renormalizing
 
 import z3c.macro.tales
 import z3c.macro.zcml
@@ -55,15 +54,13 @@ def test_suite():
             'README.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=(doctest.NORMALIZE_WHITESPACE
-                         | doctest.ELLIPSIS
-                         | renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2),
+                         | doctest.ELLIPSIS),
         ),
         doctest.DocFileSuite(
             'zcml.rst',
             setUp=setUp, tearDown=tearDown,
             optionflags=(doctest.NORMALIZE_WHITESPACE
-                         | doctest.ELLIPSIS
-                         | renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2),
+                         | doctest.ELLIPSIS),
         )
     ) for setUp in (setUpZ3CPT, setUpZPT))
 
