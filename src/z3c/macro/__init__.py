@@ -28,6 +28,6 @@ try:
     from z3c.macro import tales
     z3c.pt.pagetemplate.BaseTemplate.expression_types[
         'macro'] = tales.MacroExpr
-except ImportError:  # pragma: no cover
+except ModuleNotFoundError:  # pragma: no cover
     # we do not support z3c.pt
     pass

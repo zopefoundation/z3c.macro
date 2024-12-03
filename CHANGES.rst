@@ -5,7 +5,9 @@ CHANGES
 3.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add support for Python 3.13.
+
+- Drop support for Python 3.7.
 
 
 3.0 (2024-01-11)
