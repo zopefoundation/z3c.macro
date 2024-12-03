@@ -36,7 +36,7 @@ class IMacroDirective(zope.interface.Interface):
             (should end in extension ``.pt`` or ``.html``).
             """,
         required=True,
-        )
+    )
 
     name = zope.schema.TextLine(
         title='Name',
@@ -53,7 +53,7 @@ class IMacroDirective(zope.interface.Interface):
             """,
         required=True,
         default='',
-        )
+    )
 
     macro = zope.schema.TextLine(
         title='Macro',
@@ -64,14 +64,14 @@ class IMacroDirective(zope.interface.Interface):
             """,
         required=False,
         default='',
-        )
+    )
 
     for_ = zope.configuration.fields.GlobalObject(
         title='Context',
         description='The context for which the macro should be used',
         required=False,
         default=zope.interface.Interface,
-        )
+    )
 
     view = zope.configuration.fields.GlobalObject(
         title='View',
@@ -84,14 +84,14 @@ class IMacroDirective(zope.interface.Interface):
         description='The layer for which the macro should be used',
         required=False,
         default=IDefaultBrowserLayer,
-        )
+    )
 
     contentType = zope.schema.ASCIILine(
         title='Content Type',
         description='The content type identifies the type of data.',
         default='text/html',
         required=False,
-        )
+    )
 
 
 class MacroFactory:

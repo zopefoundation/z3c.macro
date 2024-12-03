@@ -70,5 +70,5 @@ try:
                 traverse=self.traverser,
             )
 
-except ImportError:  # pragma: no cover
+except ModuleNotFoundError:  # pragma: no cover
     pass
