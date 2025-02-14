@@ -38,7 +38,7 @@ TESTS_REQUIRE = CHAMELEON_REQUIRES + [
 
 setup(
     name='z3c.macro',
-    version='3.1',
+    version='3.2.dev0',
     author="Roger Ineichen and the Zope Community",
     author_email="zope-dev@zope.dev",
     description="Simpler definition of ZPT macros.",
