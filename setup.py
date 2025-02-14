@@ -40,7 +40,7 @@ setup(
     name='z3c.macro',
     version='3.1.dev0',
     author="Roger Ineichen and the Zope Community",
-    author_email="zope-dev@zope.org",
+    author_email="zope-dev@zope.dev",
     description="Simpler definition of ZPT macros.",
     long_description=(
         read('README.rst')
@@ -54,7 +54,7 @@ setup(
         + '\n\n' +
         read('CHANGES.rst')
     ),
-    license="ZPL 2.1",
+    license="ZPL-2.1",
     keywords="zope3 macro pagetemplate zpt",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -63,7 +63,6 @@ setup(
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
@@ -80,7 +79,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['z3c'],
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     extras_require={
         'test': TESTS_REQUIRE,
         'chameleon': CHAMELEON_REQUIRES,
@@ -95,8 +94,6 @@ setup(
         'zope.schema',
         'zope.tales',
     ],
-    tests_require=TESTS_REQUIRE,
-    test_suite='z3c.macro.tests.test_suite',
     include_package_data=True,
     zip_safe=False,
 )
